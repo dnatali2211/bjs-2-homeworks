@@ -1,5 +1,5 @@
 class PrintEditionItem {
-    constructor(name, releaseDate, pagesCount, state, type) {
+    constructor(name, releaseDate, pagesCount) {
         this.name = name;
         this.releaseDate = releaseDate;
         this.pagesCount = pagesCount;
@@ -108,3 +108,34 @@ givenBook.fix();
 console.log(givenBook.state);
 myLibrary.addBook(givenBook);
 console.log(myLibrary.findBookBy("name", "Кукушка прилетела"));
+
+class Student {
+    constructor(name) {
+        this.name = name;
+        this.marks = {};
+    }
+
+    addMark(mark, subject) {
+        if (mark >= 2 && mark <= 5) {
+            if (!this.marks.hasOwnProperty(subject)) {
+                this.marks[subject] = [];
+            }
+            this.marks[subject].push(mark);
+        }
+    }
+    getAverageBySubject(subject) {
+        if (this.marks.hasOwnProperty(subject)) {
+            return this.marks[subject].reduce((acc, mark) => acc + mark, 0) / this.marks[subject].length;
+        } else return 0;
+    }
+    getAverage() {
+        const subjects = Object.keys(this.marks);
+        if (subjects.length === 0) {
+            return 0;
+        }
+        const totalSum = subjects.reduce((acc, subject) => {
+            return acc + this.getAverageBySubject(subject);
+        }, 0);
+        return totalSum / subjects.length;
+    }
+}

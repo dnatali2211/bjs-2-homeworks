@@ -1,7 +1,5 @@
 'use strict';
 //Задача № 1
-const md5 = require('js-md5');
-
 function cachingDecoratorNew(func) {
     let cache = [];
 
@@ -20,8 +18,8 @@ function cachingDecoratorNew(func) {
         if (cache.length > 5) {
             cache.shift();
         }
-        console.log("Вычисляем " + result, cache);
-        return "Вычисляем " + result;
+        console.log("Вычисляем: " + result, cache);
+        return "Вычисляем: " + result;
     }
     return wrapper;
 }
